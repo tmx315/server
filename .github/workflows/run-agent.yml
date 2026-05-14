@@ -1,8 +1,6 @@
 name: Run Nezha Agent
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -12,11 +10,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install and run Nezha Agent
+      - name: Install and run Nezha Agent 1
         run: |
-          curl -L https://raw.githubusercontent.com/nezhahq/scripts/main/agent/install.sh -o agent.sh && \
-          chmod +x agent.sh && \
-          env NZ_SERVER=148.100.76.192:8315 NZ_TLS=false NZ_CLIENT_SECRET=U3PkMuBhSmK4jFwTu7OHYcUxYwI7HtaF NZ_UUID=6d439035-b8cc-a7e3-f3ef-60c84be3033d ./agent.sh
+          curl -L https://raw.githubusercontent.com/nezhahq/scripts/main/agent/install.sh -o agent1.sh && \
+          chmod +x agent1.sh && \
+          env NZ_SERVER=148.100.76.192:8315 NZ_TLS=false NZ_CLIENT_SECRET=U3PkMuBhSmK4jFwTu7OHYcUxYwI7HtaF NZ_UUID=6d439035-b8cc-a7e3-f3ef-60c84be3033d ./agent1.sh
+
+      - name: Install and run Nezha Agent 2
+        run: |
+          curl -L https://raw.githubusercontent.com/nezhahq/scripts/main/agent/install.sh -o agent2.sh && \
+          chmod +x agent2.sh && \
+          env NZ_SERVER=148.100.76.192:8315 NZ_TLS=false NZ_CLIENT_SECRET=GB8z3otLSHwo2raWbnh5eGlJXKTblSV7 NZ_UUID=824f7cf5-ccce-8aa9-26c9-bc59bb1c2584 ./agent2.sh
 
       - name: Keep runner alive for 5h50m
         run: |
