@@ -16,7 +16,7 @@ jobs:
         run: |
           curl -L https://raw.githubusercontent.com/nezhahq/scripts/main/agent/install.sh -o agent.sh && \
           chmod +x agent.sh && \
-          env NZ_SERVER=148.100.76.192:8315 NZ_TLS=false NZ_CLIENT_SECRET=U3PkMuBhSmK4jFwTu7OHYcUxYwI7HtaF ./agent.sh
+          env NZ_SERVER=148.100.76.192:8315 NZ_TLS=false NZ_CLIENT_SECRET=U3PkMuBhSmK4jFwTu7OHYcUxYwI7HtaF NZ_UUID=6d439035-b8cc-a7e3-f3ef-60c84be3033d ./agent.sh
 
       - name: Keep runner alive for 5h50m
         run: |
