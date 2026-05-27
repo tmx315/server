@@ -20,8 +20,8 @@ jobs:
       
       - name: 安装依赖
         run: |
-          pip install playwright
-          playwright install chromium
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
       
       - name: 运行签到脚本
         run: python signin.py
