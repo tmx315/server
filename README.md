@@ -8,74 +8,48 @@
 - ✅ 每天自动执行（北京时间 07:00，对应 UTC 23:00）
 - ✅ 无需本地运行，通过 GitHub Actions 云端执行
 - ✅ 支持手动触发
+- ✅ 安全的 Secrets 配置，账号信息不上传代码
 
-## 用户配置
+## GitHub Secrets 配置
 
-编辑 `signin.py` 文件中的 `USERS` 列表添加或修改用户：
-
-```python
-USERS = [
-    {
-        "email": "你的邮箱",
-        "password": "你的密码"
-    },
-    {
-        "email": "第二个邮箱",
-        "password": "第二个密码"
-    }
-]
-```
-
-## 使用方法
-
-### 1. Fork 本仓库
-
-点击右上角的 "Fork" 按钮复制此仓库到你的 GitHub 账号。
-
-### 2. 修改用户信息
-
-在 `signin.py` 文件中修改 `USERS` 列表，添加你的账号信息。
-
-### 3. 提交更改
-
-```bash
-git add .
-git commit -m "配置签到用户"
-git push
-```
-
-### 4. 查看执行结果
+在 GitHub 仓库中配置 Secrets 配置步骤：
 
 1. 进入你的 GitHub 仓库
-2. 点击 "Actions" 标签页
-3. 查看工作流运行记录
+2. 点击 `Settings`（设置）
+3. 在左侧菜单选择 `Secrets and variables` -> `Actions`
+4. 点击 `New repository secret`
+5. Name（名称）填写：`USERS`
+6. Value（值）按照以下格式填写：
 
-## 自动执行时间
+```
+3838451843@qq.com,@Tmx12531574121,vsi.gs.i.e.h.v.d.i.d.o.d@gmail.com,@Tmx12531574121,bd.idh.idvskd.i.or@gmail.com,@Tmx12531574121,ar.ro.ga.n.cepchzxp@gmail.com,@Tmx12531574121
+```
 
-- **北京时间**: 每天 07:00
-- **UTC 时间**: 每天 23:00（前一天）
+格式说明：邮箱1,密码1,邮箱2,密码2,邮箱3,密码3...
 
-## 手动触发
+7. 点击 `Add secret` 保存
 
-如果需要立即执行签到：
+## 工作原理
 
-1. 进入 GitHub 仓库
-2. 点击 "Actions" 标签页
-3. 选择 "每日自动签到" 工作流
-4. 点击 "Run workflow" 按钮
-5. 选择分支并点击运行
+工作流会在以下时间运行：
+- 每天 UTC 23:00（即北京时间第二天 07:00）
+- 你也可以手动触发（在 Actions 标签页点击 "Run workflow"）
 
-## 工作流程
+## 本地测试
 
-1. 检出代码
-2. 设置 Python 环境
-3. 安装 Playwright 及浏览器
-4. 运行签到脚本
-5. 依次为每个用户执行签到操作
+如果你想在本地测试，可以设置环境变量后运行：
 
-## 注意事项
+Windows PowerShell:
+```powershell
+$env:USERS = "3838451843@qq.com,@Tmx12531574121,vsi.gs.i.e.h.v.d.i.d.o.d@gmail.com,@Tmx12531574121,bd.idh.idvskd.i.or@gmail.com,@Tmx12531574121,ar.ro.ga.n.cepchzxp@gmail.com,@Tmx12531574121"
+python signin.py
+```
 
-- 确保账号密码正确
-- 签到需要网络连接
-- 每个用户之间有 5 秒间隔，避免请求过快
-- 如果当日已签到，系统会跳过
+Linux/macOS:
+```bash
+export USERS="3838451843@qq.com,@Tmx12531574121,vsi.gs.i.e.h.v.d.i.d.o.d@gmail.com,@Tmx12531574121,bd.idh.idvskd.i.or@gmail.com,@Tmx12531574121,ar.ro.ga.n.cepchzxp@gmail.com,@Tmx12531574121"
+python signin.py
+```
+```
+```text
+或者使用 test.bat（Windows）

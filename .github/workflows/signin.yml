@@ -25,4 +25,6 @@ jobs:
         run: python -m playwright install chromium --with-deps
       
       - name: 运行签到脚本
+        env:
+          USERS: ${{ secrets.USERS }}
         run: python signin.py

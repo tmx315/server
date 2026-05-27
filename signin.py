@@ -2,25 +2,27 @@ import asyncio
 from playwright.async_api import async_playwright
 from datetime import datetime
 import sys
+import os
 
-USERS = [
-    {
-        "email": "3838451843@qq.com",
-        "password": "@Tmx12531574121"
-    },
-    {
-        "email": "vsi.gs.i.e.h.v.d.i.d.o.d@gmail.com",
-        "password": "@Tmx12531574121"
-    },
-    {
-        "email": "bd.idh.idvskd.i.or@gmail.com",
-        "password": "@Tmx12531574121"
-    },
-    {
-        "email": "ar.ro.ga.n.cepchzxp@gmail.com",
-        "password": "@Tmx12531574121"
-    }
-]
+def parse_users_from_env():
+    users_env = os.environ.get('USERS', '')
+    if not users_env:
+        print("错误：没有设置 USERS 环境变量")
+        return []
+    
+    users = []
+    # 格式: user1@example.com,password1,user2@example.com,password2
+    user_password_pairs = users_env.split(',')
+    for i in range(0, len(user_password_pairs), 2):
+        if i + 1 < len(user_password_pairs):
+            email = user_password_pairs[i].strip()
+            password = user_password_pairs[i + 1].strip()
+            if email and password:
+                users.append({
+                    "email": email,
+                    "password": password
+                })
+    return users
 
 async def signin_user(user, user_index):
     async with async_playwright() as p:
@@ -129,6 +131,15 @@ async def main():
     print("自动签到系统启动")
     print("=" * 60)
     print(f"时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    USERS = parse_users_from_env()
+    
+    if not USERS:
+        print("没有找到用户配置！")
+        print("请设置 USERS 环境变量，格式: user1@example.com,password1,user2@example.com,password2")
+        print("=" * 60)
+        return
+    
     print(f"用户数量: {len(USERS)}")
     print("=" * 60)
 
