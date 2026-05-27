@@ -21,7 +21,7 @@ jobs:
       - name: 安装系统依赖
         run: |
           sudo apt-get update
-          sudo apt-get install -y libasound2t64 libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 libatspi2.0-0 libx11-xcb1 libxcb-render0 libxcb-shape0 libxcb-xfixes0
+          sudo apt-get install -y libasound2t64 libnss3 libatk1.0-0 ...
       
       - name: 安装 Playwright
         run: pip install playwright
