@@ -11,6 +11,10 @@ USERS = [
     {
         "email": "vsi.gs.i.e.h.v.d.i.d.o.d@gmail.com",
         "password": "@Tmx12531574121"
+    },
+    {
+        "email": "bd.idh.idvskd.i.or@gmail.com",
+        "password": "@Tmx12531574121"
     }
 ]
 
